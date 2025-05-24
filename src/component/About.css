@@ -1,0 +1,21 @@
+.about-container {
+  padding: 80px;
+  font-family: 'Playpen Sans Arabic', cursive;
+  line-height: 1.8;
+  text-align: center; /* لجعل النص والعنوان في الوسط */
+}
+
+.about-container h1 {
+  /* يمكنك إضافة تنسيقات أخرى إذا أحببت */
+  margin-bottom: 20px; /* تباعد تحت العنوان */
+}
+
+.about-container p {
+  /* تنسيقات الفقرات */
+  margin-bottom: 15px; /* مسافة بين الفقرات */
+}
+
+.about-container p.bold-text {
+  font-weight: bold;
+  margin-top: 20px;
+}
