@@ -9,6 +9,8 @@ header {
   overflow: hidden;
   padding: 80px 0px;
   margin-top: 0px;
+    font-family: 'Playpen Sans Arabic', cursive;
+
 }
 
 header.row {
@@ -48,10 +50,14 @@ header button {
 header button:last-of-type {
   background-color: #fff;
   color: black;
+    font-family: 'Playpen Sans Arabic', cursive;
+
 }
 
 header button:hover {
   transition: 0.2s ease-in-out;
+    font-family: 'Playpen Sans Arabic', cursive;
+
 }
 
 /* ملاحظة: يوجد فراغ زائد في selector أدناه تم حذفه */
@@ -71,6 +77,8 @@ header button:last-of-type:hover {
   margin-top: 20px;
   border-radius: 8px;
   max-width: 400px;
+    font-family: 'Playpen Sans Arabic', cursive;
+
 }
 
 .order-form div {
@@ -113,15 +121,21 @@ header button:last-of-type:hover {
 .order-form button:hover {
   background-color: #3f0505;
   color: #fff;
+    font-family: 'Playpen Sans Arabic', cursive;
+
 }
 
 .order-form button[type="button"] {
   background-color: #fff;
   color: black;
   border: 1px solid black;
+    font-family: 'Playpen Sans Arabic', cursive;
+
 }
 
 .order-form button[type="button"]:hover {
   background-color: #3f0505;
   color: #fff;
+    font-family: 'Playpen Sans Arabic', cursive;
+
 }

@@ -6,6 +6,7 @@
     text-align: center;
     overflow: hidden;
     margin-top: 0px;
+       font-family: "Playpen Sans Arabic", cursive;
 
 }
 .numbers.row{
@@ -37,6 +38,7 @@
     height: auto;
     overflow: hidden;
      margin-top: 60px;
+        font-family: "Playpen Sans Arabic", cursive;
 }
 .pride img ,
 .ingredients img{
@@ -78,6 +80,7 @@
     text-align: center;
     margin-top: 20px;
        transition: .2s ease;
+          font-family: "Playpen Sans Arabic", cursive;
     
 
 }
@@ -94,17 +97,20 @@
 .pride button:hover a ,
 .ingredients button:hover a{
     color: #501717;
+       font-family: "Playpen Sans Arabic", cursive;
  
 
 }
 .pride button:hover ,
 .ingredients button:hover{
     background-color: #fff;
+       font-family: "Playpen Sans Arabic", cursive;
 
 }
 /*css to the  ingredients section*/
 .ingredients ul{
     padding: 0px;
+       font-family: "Playpen Sans Arabic", cursive;
 }
 .ingredients ul li{
     list-style-type: square;
@@ -322,3 +328,16 @@
 
 
 }
+.logout-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
