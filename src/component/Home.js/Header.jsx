@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Header.css';
-import { db } from '../../firebase'; // تأكدي أن المسار صحيح حسب مكان الملف
+import { db, auth } from '../../firebase'; // تأكدي أن المسار صحيح
 import { collection, doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [showForm, setShowForm] = useState(false);
@@ -11,8 +13,24 @@ const Header = () => {
     orderType: ''
   });
 
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // التحقق من حالة تسجيل الدخول
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
   const handleOrderClick = () => {
-    setShowForm(true);
+    if (!user) {
+      navigate(`/login?redirect=${location.pathname}`);
+    } else {
+      setShowForm(true);
+    }
   };
 
   const handleChange = (e) => {
@@ -22,21 +40,20 @@ const Header = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // نزيل الفراغات من الاسم لتسهيل تكوين المعرف
     const cleanName = formData.name.replace(/\s+/g, '');
-    // تكوين معرف مخصص فريد
     const customId = `${cleanName}_${formData.phone}_${Date.now()}`;
 
     try {
       await setDoc(doc(db, 'orders', customId), {
         ...formData,
-        createdAt: serverTimestamp()
+        createdAt: serverTimestamp(),
+        userId: user.uid // ربط الطلب بحساب المستخدم
       });
-      alert('تم تسجيل طلبك بنجاح!');
+      alert('✅ تم تسجيل طلبك بنجاح!');
       setShowForm(false);
       setFormData({ name: '', phone: '', orderType: '' });
     } catch (error) {
-      alert('حدث خطأ، حاول مرة أخرى.');
+      alert('❌ حدث خطأ، حاول مرة أخرى.');
       console.error(error);
     }
   };
@@ -46,12 +63,12 @@ const Header = () => {
       <div className='container'>
         <div className='col-md-6'>
           <h2>.الخيارات الغذائية السليمة هي استثمار حقيقي في صحتك</h2>
-          <p>.الصحة تبدا من الطبق فاختر مايغذي جسمك ويقوي مناعتك</p>
+          <p>.الصحة تبدأ من الطبق فاختر ما يغذي جسمك ويقوي مناعتك</p>
 
           {!showForm && (
             <>
-              <button onClick={handleOrderClick}>اطلب الان</button>
-                    <button>اعرف المزيد</button>
+              <button onClick={handleOrderClick}>اطلب الآن</button>
+              <button>اعرف المزيد</button>
             </>
           )}
 
@@ -95,10 +112,9 @@ const Header = () => {
               <button type="button" onClick={() => setShowForm(false)}>إلغاء</button>
             </form>
           )}
-
         </div>
         <div className='col-md-6'>
-          {/* يمكنك إضافة صورة أو محتوى لاحقاً هنا */}
+          {/* يمكنكِ إضافة صورة هنا لاحقاً */}
         </div>
       </div>
     </header>

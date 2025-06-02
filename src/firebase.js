@@ -4,7 +4,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getAuth } from "firebase/auth";  // <-- إضافة المصادقة
+import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth";
 
 // 🔐 إعدادات Firebase الخاصة بتطبيقك
 const firebaseConfig = {
@@ -21,7 +21,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
-const auth = getAuth(app);  // <-- تهيئة المصادقة
+const auth = getAuth(app);
 
-// 📤 تصدير قواعد البيانات والتخزين والمصادقة لاستخدامها في بقية المشروع
+// ✅ إعداد حفظ الجلسة
+setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    console.log("🔥 تم تفعيل حفظ جلسة المستخدم بنجاح");
+  })
+  .catch((error) => {
+    console.error("❌ حدث خطأ في تفعيل حفظ الجلسة:", error);
+  });
+
+// 📤 تصدير القيم
 export { db, storage, auth };

@@ -1,3 +1,4 @@
+
 /* src/component/Login.css */
 
 .login-wrapper {
@@ -5,6 +6,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed; 
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -79,4 +81,10 @@
   border-radius: 5px;
   padding: 8px 16px;
   cursor: pointer;
+}
+/* إزالة الهوامش والمساحات البيضاء من الصفحة */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }

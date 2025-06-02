@@ -1,30 +1,34 @@
 .register-full-page {
-  background-size: cover;
-  background-position: center;
+  min-height: 100vh;
+  background-image: url('../assets/register-bg.jpg');
   background-repeat: no-repeat;
-  height: 100vh;
+  background-size: cover;
+  background-position: center center;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .register-glass-box {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.15); /* شفافية مثل Login */
+  padding: 40px 30px;
   border-radius: 16px;
-  padding: 40px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(255, 87, 34, 0.37);
-  width: 90%;
   max-width: 400px;
+  width: 100%;
   text-align: center;
-  color: #ffffff;
+  color: #fff;
 }
 
 .register-glass-box h2 {
   margin-bottom: 20px;
-  color: #fa533c;
+  color: #db4c32;
+  font-weight: 700;
 }
 
 .register-glass-box input {
@@ -61,13 +65,14 @@
   margin-top: 10px;
   cursor: pointer;
   transition: 0.3s ease;
+  width: 100%;
 }
 
 .register-glass-box button:hover {
-  background-color: #e64a19;
+  background-color: #dd795b;
 }
 
-.register-glass-box .secondary-button {
+.secondary-button {
   background-color: #ff7043;
   font-size: 14px;
   margin-top: 10px;
@@ -76,4 +81,20 @@
   border-radius: 5px;
   padding: 8px 16px;
   cursor: pointer;
+  display: inline-block;
+  width: auto;
+}
+
+/* لمنع الصعود الغير مرغوب فيه عند شاشات صغيرة */
+@media (max-width: 500px) {
+  .register-glass-box {
+    padding: 30px 20px;
+  }
+}
+
+/* إزالة الهوامش والمساحات البيضاء من الصفحة */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }

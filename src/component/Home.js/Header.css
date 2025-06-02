@@ -1,6 +1,11 @@
 header {
   background: url("../../assets/header.jpg") center no-repeat;
+  background-position: center 0px;
+  
+
   background-size: cover;
+
+
 
   width: 100%;
   max-width: 100%;
@@ -139,3 +144,4 @@ header button:last-of-type:hover {
     font-family: 'Playpen Sans Arabic', cursive;
 
 }
+

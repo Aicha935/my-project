@@ -11,7 +11,6 @@ import Faq from './component/Faq';
 
 import Login from './component/Login';
 import Register from './component/Register';
-import ProtectedRoute from './component/ProtectedRoute';
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase"; // ✅ صح
@@ -19,59 +18,23 @@ import { auth } from "./firebase"; // ✅ صح
 function App() {
   const [user, loading] = useAuthState(auth);
 
-  // أثناء التحقق من حالة المستخدم
   if (loading) return <p>جاري التحميل...</p>;
 
   return (
     <Router>
-      {/* ✨ عرض الـ Navs فقط للمستخدم المسجل دخوله */}
+      {/* ✨ عرض الـ Navs فقط إذا كان المستخدم مسجل دخول */}
       {user && <Navs />}
       <Routes>
         {/* صفحات عامة */}
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
         <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
 
-        {/* صفحات محمية */}
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <ProtectedRoute>
-              <About />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/explore"
-          element={
-            <ProtectedRoute>
-              <Explore />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/review"
-          element={
-            <ProtectedRoute>
-              <Review />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/faq"
-          element={
-            <ProtectedRoute>
-              <Faq />
-            </ProtectedRoute>
-          }
-        />
+        {/* صفحات بدون حماية */}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/review" element={<Review />} />
+        <Route path="/faq" element={<Faq />} />
       </Routes>
     </Router>
   );

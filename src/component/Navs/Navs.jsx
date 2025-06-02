@@ -39,7 +39,7 @@ const Navs = () => {
           <Nav>
             <Nav.Link id="lastnav">236856589765</Nav.Link>
             <Nav.Link onClick={handleLogout} style={{ color: "red", fontWeight: "bold" }}>
-              Logout
+          Logout
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
